@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,501 +13,7 @@
       rel="stylesheet"
     />
 
-    <style>
-      /* =========================================
-           CSS VARIABLES & RESET
-           ========================================= */
-      :root {
-        --bg-color: #f4f3ef;
-        --surface: #ffffff;
-        --surface-alt: #eae8e1;
-        --primary: #1a1a1a;
-        --primary-hover: #2d2d2d;
-        --accent: #7a8c76;
-        --text-main: #1a1a1a;
-        --text-muted: #4b5563;
-        --text-light: #9ca3af;
-        --border-color: #e5e7eb;
-        --radius-pill: 9999px;
-        --radius-xl: 1.5rem;
-        --radius-2xl: 2.5rem;
-        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        --shadow-md:
-          0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        --shadow-lg:
-          0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        --shadow-xl:
-          0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: "Outfit", sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-main);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: var(--bg-color);
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #d1cec5;
-        border-radius: 10px;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4 {
-        font-weight: 700;
-        line-height: 1.2;
-      }
-      p {
-        line-height: 1.6;
-      }
-      .text-muted {
-        color: var(--text-muted);
-      }
-      .hidden {
-        display: none !important;
-      }
-
-      .container {
-        width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-      @media (min-width: 640px) {
-        .container {
-          padding: 0 4rem;
-        }
-      }
-      main.container {
-        flex-grow: 1;
-        padding-bottom: 4rem;
-        padding-top: 2rem;
-      }
-
-      /* =========================================
-           HEADER & NAVIGATION
-           ========================================= */
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        background: rgba(244, 243, 239, 0.95);
-        backdrop-filter: blur(12px);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.5rem 2rem; /* Fixed spacing */
-        margin-bottom: 1rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
-      @media (min-width: 640px) {
-        header {
-          padding: 2rem 4rem;
-        }
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        cursor: pointer;
-        font-size: 1.5rem;
-        font-weight: 800;
-        letter-spacing: -0.5px;
-      }
-      .logo-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        background: var(--accent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 2rem;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text-muted);
-      }
-      .nav-btn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-family: inherit;
-        font-size: inherit;
-        color: inherit;
-        transition: all 0.2s ease;
-      }
-      .nav-btn:hover,
-      .nav-btn.active {
-        color: var(--primary);
-        font-weight: 800;
-      }
-
-      .user-badge {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        background: var(--surface);
-        padding: 0.5rem 0.5rem 0.5rem 1.25rem;
-        border-radius: var(--radius-pill);
-        border: 1px solid var(--border-color);
-        font-size: 0.875rem;
-        font-weight: 600;
-        box-shadow: var(--shadow-sm);
-      }
-      .btn-logout {
-        background: #fef2f2;
-        color: #dc2626;
-        border: none;
-        padding: 0.5rem 1.25rem;
-        border-radius: var(--radius-pill);
-        cursor: pointer;
-        font-weight: 700;
-        font-family: inherit;
-        font-size: 0.875rem;
-        transition: background 0.2s ease;
-      }
-      .btn-logout:hover {
-        background: #fee2e2;
-      }
-
-      /* =========================================
-           BUTTONS & FORMS
-           ========================================= */
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.875rem 1.75rem;
-        border-radius: var(--radius-pill);
-        font-family: inherit;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        border: none;
-        transition: all 0.2s ease;
-      }
-      .btn-primary {
-        background: var(--primary);
-        color: white;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      }
-      .btn-primary:hover {
-        background: var(--primary-hover);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-      }
-      .btn-full {
-        width: 100%;
-        padding: 1.25rem;
-        font-size: 1.125rem;
-      }
-
-      .page-section {
-        display: none;
-        opacity: 0;
-      }
-      .page-section.active {
-        display: block;
-        opacity: 1;
-        animation: fadeUp 0.5s ease forwards;
-      }
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(15px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .form-card {
-        background: var(--surface);
-        border-radius: var(--radius-2xl);
-        padding: 3rem;
-        box-shadow: var(--shadow-xl);
-        border: 1px solid var(--border-color);
-        position: relative;
-        overflow: hidden;
-      }
-      .form-input {
-        width: 100%;
-        background: var(--surface-alt);
-        color: var(--primary);
-        padding: 1.25rem 1.5rem;
-        border-radius: var(--radius-pill);
-        border: 2px solid transparent;
-        outline: none;
-        font-family: inherit;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: border 0.3s ease;
-      }
-      .form-input:focus {
-        border-color: var(--accent);
-      }
-      select.form-input {
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-        background-repeat: no-repeat;
-        background-position: right 1.5rem center;
-        background-size: 1em;
-        cursor: pointer;
-        -webkit-appearance: none;
-        appearance: none;
-      }
-
-      .auth-tabs {
-        display: flex;
-        background: var(--surface-alt);
-        padding: 0.5rem;
-        border-radius: var(--radius-pill);
-        margin-bottom: 2.5rem;
-      }
-      .auth-tab {
-        flex: 1;
-        text-align: center;
-        padding: 0.875rem;
-        border-radius: var(--radius-pill);
-        font-weight: 700;
-        cursor: pointer;
-        color: var(--text-muted);
-        transition: all 0.3s ease;
-      }
-      .auth-tab.active {
-        background: var(--surface);
-        color: var(--primary);
-        box-shadow: var(--shadow-sm);
-      }
-      .role-selector {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 2rem;
-      }
-      .role-option {
-        flex: 1;
-        text-align: center;
-        padding: 1.25rem;
-        border: 2px solid var(--surface-alt);
-        border-radius: 1rem;
-        cursor: pointer;
-        font-weight: 700;
-        color: var(--text-muted);
-        transition: all 0.3s ease;
-      }
-      .role-option.selected {
-        border-color: var(--primary);
-        background: var(--surface-alt);
-        color: var(--primary);
-      }
-
-      .slots-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        background: rgba(234, 232, 225, 0.5);
-        padding: 1.5rem;
-        border-radius: 1.5rem;
-        border: 1px solid var(--border-color);
-      }
-      .slot-pill {
-        background: var(--surface);
-        color: #374151;
-        font-weight: 700;
-        text-align: center;
-        padding: 1rem;
-        border-radius: var(--radius-pill);
-        cursor: pointer;
-        border: 1px solid var(--border-color);
-        font-size: 0.875rem;
-        transition: all 0.2s ease;
-      }
-      .slot-pill:hover {
-        background: #e0ddd4;
-      }
-      .slot-pill.selected {
-        background: var(--primary);
-        color: white;
-        border-color: var(--primary);
-      }
-
-      /* =========================================
-           APPOINTMENT CARDS (FIXED STYLING)
-           ========================================= */
-      .appointments-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      @media (min-width: 768px) {
-        .appointments-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      @media (min-width: 1024px) {
-        .appointments-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      .appointment-card {
-        background: var(--surface);
-        padding: 2rem;
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-md);
-        border: 1px solid var(--border-color);
-        position: relative;
-        overflow: hidden; /* Fixes border radius cutting off */
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .appointment-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-lg);
-      }
-
-      .card-accent-bar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0.5rem;
-        height: 100%;
-        background: var(--accent);
-      }
-      .card-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.25rem;
-      }
-      .badge-slot {
-        background: var(--surface-alt);
-        padding: 0.35rem 1rem;
-        border-radius: var(--radius-pill);
-        font-size: 0.875rem;
-        font-weight: 800;
-        color: var(--primary);
-      }
-      .badge-id {
-        background: #f9fafb;
-        border: 1px solid var(--border-color);
-        padding: 0.25rem 0.75rem;
-        border-radius: var(--radius-pill);
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: var(--text-light);
-      }
-      .card-content h4 {
-        font-size: 1.5rem;
-        margin-bottom: 0.25rem;
-        color: var(--primary);
-      }
-      .card-content p {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-        font-weight: 500;
-        margin-bottom: 1rem;
-      }
-
-      .btn-cancel {
-        width: 100%;
-        padding: 1rem;
-        border-radius: var(--radius-pill);
-        border: 2px solid var(--surface-alt);
-        background: transparent;
-        color: var(--text-muted);
-        font-weight: 700;
-        cursor: pointer;
-        margin-top: 1.5rem;
-        transition: all 0.3s ease; /* Fixed Hover Transition */
-      }
-      .btn-cancel:hover {
-        background: #fef2f2;
-        color: #dc2626;
-        border-color: #fecaca;
-      }
-
-      /* =========================================
-           ALERTS & MODALS
-           ========================================= */
-      .msg-box {
-        padding: 1.25rem;
-        border-radius: 1rem;
-        font-size: 0.95rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
-        text-align: center;
-      }
-      .msg-success {
-        background: #ebf1ea;
-        color: #4a6346;
-        border: 1px solid #d1e2ce;
-      }
-      .msg-error {
-        background: #fef2f2;
-        color: #dc2626;
-        border: 1px solid #fee2e2;
-      }
-
-      .modal-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(26, 26, 26, 0.4);
-        backdrop-filter: blur(5px);
-        z-index: 100;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      .modal-overlay.show {
-        display: flex;
-      }
-      .modal-overlay.visible {
-        opacity: 1;
-      }
-      .modal-content {
-        background: var(--surface);
-        padding: 3rem;
-        border-radius: var(--radius-2xl);
-        max-width: 28rem;
-        width: 100%;
-        text-align: center;
-        box-shadow: var(--shadow-xl);
-        transform: scale(0.95);
-        transition: transform 0.3s ease;
-      }
-      .modal-overlay.visible .modal-content {
-        transform: scale(1);
-      }
-    </style>
+   <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <!-- Header Navigation -->
@@ -557,6 +64,15 @@
         >
           Dashboard
         </button>
+
+        <button
+          onclick="navigate('developer')"
+          class="nav-btn"
+          data-target="developer"
+        >
+          Developer
+        </button>
+
       </nav>
       <div id="nav-guest" class="hidden">
         <button onclick="navigate('auth')" class="btn btn-primary">
@@ -614,7 +130,7 @@
             </button>
           </div>
           <img
-            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            src="student teacher.jpg"
             style="
               width: 100%;
               border-radius: var(--radius-2xl);
@@ -622,6 +138,49 @@
             "
           />
         </div>
+
+        <!-- NEW: How Scheduling Works Section -->
+            <div style="margin-top: 4rem;">
+                <h2 class="section-title">How UniConnect Works</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-icon">1</div>
+                        <h4>Create your profile</h4>
+                        <p class="text-muted">Sign up in seconds. You'll instantly receive a unique Student or Teacher ID to access the dashboard securely.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">2</div>
+                        <h4>Find your Supervisor</h4>
+                        <p class="text-muted">Browse the list of available academic supervisors and view their real-time calendar availability.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">3</div>
+                        <h4>Book Instantly</h4>
+                        <p class="text-muted">Select a time slot that works for you. Your session is immediately synced to both of your dashboards.</p>
+                    </div>
+                </div>
+            </div>
+
+<!-- NEW: FAQs Section -->
+            <div style="margin-top: 4rem;">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">Can I cancel an appointment?</div>
+                        <div class="faq-answer">Yes, you can cancel any session directly from your "My Schedule" dashboard. The time slot will instantly become available for other students to book.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">I forgot my auto-generated ID. What do I do?</div>
+                        <div class="faq-answer">Your auto-generated ID (e.g., S101 or T101) is required for login. If you lose it, please contact the system administrator to retrieve it using your registered name.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Can a time slot be double-booked?</div>
+                        <div class="faq-answer">No. Our backend SQLite database automatically checks constraints to ensure that once a time slot is reserved by a student, it is hidden from others.</div>
+                    </div>
+                </div>
+            </div>
+
+
       </section>
 
       <!-- Auth Page -->
@@ -855,7 +414,55 @@
           </p>
         </div>
       </section>
+
+<!-- =========================================
+             DEVELOPER PAGE
+             ========================================= -->
+        <section id="developer" class="page-section">
+            <div class="dev-card">
+                <div class="dev-header">
+                    <img src="IMG_2592.heic" alt="Code" class="dev-image">
+                    <div>
+                        <h2 style="font-size: 2.25rem; margin-bottom: 0.5rem;">Arif Nazir</h2>
+                        <div class="dev-subtitle">P2790927 Web Application Development</div>
+                        <p class="text-muted" style="margin-bottom: 1rem;">This application utilizes a Single Page Application (SPA) frontend architecture built with HTML5. It has been completely restyled using <strong>pure custom CSS</strong> to achieve a modern, rounded interface without external frameworks.</p>
+                        <p class="text-muted">The backend runs on a lightweight <strong>Deno</strong> server utilizing the <strong>Oak</strong> framework within an <strong>MVC</strong> (Model-View-Controller) structure, securely storing data within a local <strong>SQLite</strong> database.</p>
+                    </div>
+                </div>
+                
+                <hr class="dev-divider">
+                
+                <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem;">MVC File Structure</h3>
+                <div class="sample-data">
+                    <p class="text-muted" style="font-size: 0.95rem;">The server logic is cleanly separated into specialized modules:</p>
+                    <div class="sample-tags">
+                        <span class="sample-tag">controllers/authController.ts</span>
+                        <span class="sample-tag">controllers/bookingController.ts</span>
+                        <span class="sample-tag">models/appointmentModel.ts</span>
+                        <span class="sample-tag">tools/database.ts</span>
+                        <span class="sample-tag">views/index.html</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="logo" style="color: white; margin-bottom: 1rem;">
+                    <div class="logo-icon" style="background: white; color: var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                    <span>UniConnect</span>
+                </div>
+                <p style="color: #9ca3af; font-size: 0.875rem;">©️ 2026 UniConnect Systems. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" onclick="event.preventDefault(); navigate('developer');">About Architecture</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Modals -->
     <div id="modal-delete" class="modal-overlay">
@@ -948,341 +555,6 @@
       </div>
     </div>
 
-    <script>
-      const API_BASE = "http://localhost:8000/api";
-      let currentUser =
-        JSON.parse(localStorage.getItem("uniconnect_user")) || null;
-
-      function updateNav() {
-        document.getElementById("nav-guest").classList.add("hidden");
-        document.getElementById("nav-user").classList.add("hidden");
-        document
-          .querySelectorAll(".auth-student")
-          .forEach((el) => el.classList.add("hidden"));
-        document
-          .querySelectorAll(".auth-teacher")
-          .forEach((el) => el.classList.add("hidden"));
-
-        if (!currentUser) {
-          document.getElementById("nav-guest").classList.remove("hidden");
-        } else {
-          document.getElementById("nav-user").classList.remove("hidden");
-          document.getElementById("nav-user-name").textContent =
-            currentUser.name;
-          document.getElementById("nav-user-id").textContent = currentUser.id;
-          if (currentUser.role === "student")
-            document
-              .querySelectorAll(".auth-student")
-              .forEach((el) => el.classList.remove("hidden"));
-          else if (currentUser.role === "teacher")
-            document
-              .querySelectorAll(".auth-teacher")
-              .forEach((el) => el.classList.remove("hidden"));
-        }
-      }
-
-      function navigate(pageId) {
-        if (
-          !currentUser &&
-          ["booking", "appointments", "teacher-dashboard"].includes(pageId)
-        )
-          pageId = "auth";
-        if (currentUser) {
-          if (
-            currentUser.role === "teacher" &&
-            ["booking", "appointments"].includes(pageId)
-          )
-            pageId = "teacher-dashboard";
-          if (currentUser.role === "student" && pageId === "teacher-dashboard")
-            pageId = "appointments";
-          if (pageId === "auth") pageId = "home";
-        }
-        document
-          .querySelectorAll(".page-section")
-          .forEach((sec) => sec.classList.remove("active"));
-        document.getElementById(pageId).classList.add("active");
-        document
-          .querySelectorAll(".nav-btn")
-          .forEach((btn) => btn.classList.remove("active"));
-        const activeBtn = document.querySelector(
-          `.nav-btn[data-target="${pageId}"]`,
-        );
-        if (activeBtn) activeBtn.classList.add("active");
-
-        if (pageId === "booking") initBooking();
-        if (pageId === "appointments") fetchAppointments("student");
-        if (pageId === "teacher-dashboard") fetchAppointments("teacher");
-        document
-          .querySelectorAll(".msg-box")
-          .forEach((b) => b.classList.add("hidden"));
-      }
-
-      function handleHomeAction() {
-        !currentUser
-          ? navigate("auth")
-          : currentUser.role === "student"
-            ? navigate("booking")
-            : navigate("teacher-dashboard");
-      }
-
-      function switchAuthTab(tab) {
-        document.getElementById("tab-login").classList.remove("active");
-        document.getElementById("tab-register").classList.remove("active");
-        document.getElementById("login-form").classList.add("hidden");
-        document.getElementById("register-form").classList.add("hidden");
-        document.getElementById(`tab-${tab}`).classList.add("active");
-        document.getElementById(`${tab}-form`).classList.remove("hidden");
-      }
-
-      function selectRole(role) {
-        document.getElementById("role-student").classList.remove("selected");
-        document.getElementById("role-teacher").classList.remove("selected");
-        document.getElementById(`role-${role}`).classList.add("selected");
-        document.getElementById("reg-role").value = role;
-      }
-
-      async function api(endpoint, options = {}) {
-        const res = await fetch(`${API_BASE}${endpoint}`, {
-          ...options,
-          headers: { "Content-Type": "application/json" },
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Server Error");
-        return data;
-      }
-
-      document
-        .getElementById("login-form")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          try {
-            const res = await api("/login", {
-              method: "POST",
-              body: JSON.stringify({
-                id: document
-                  .getElementById("login-id")
-                  .value.trim()
-                  .toUpperCase(),
-                password: document.getElementById("login-pwd").value,
-              }),
-            });
-            currentUser = res;
-            localStorage.setItem(
-              "uniconnect_user",
-              JSON.stringify(currentUser),
-            );
-            updateNav();
-            navigate("home");
-            e.target.reset();
-          } catch (err) {
-            const b = document.getElementById("msg-auth");
-            b.textContent = err.message;
-            b.className = "msg-box msg-error";
-            b.classList.remove("hidden");
-          }
-        });
-
-      document
-        .getElementById("register-form")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          try {
-            const res = await api("/register", {
-              method: "POST",
-              body: JSON.stringify({
-                name: document.getElementById("reg-name").value.trim(),
-                password: document.getElementById("reg-pwd").value,
-                role: document.getElementById("reg-role").value,
-              }),
-            });
-            currentUser = res;
-            localStorage.setItem(
-              "uniconnect_user",
-              JSON.stringify(currentUser),
-            );
-            updateNav();
-            e.target.reset();
-            document.getElementById("new-user-id").textContent = res.id;
-            document
-              .getElementById("id-display-modal")
-              .classList.add("show", "visible");
-          } catch (err) {
-            const b = document.getElementById("msg-auth");
-            b.textContent = err.message;
-            b.className = "msg-box msg-error";
-            b.classList.remove("hidden");
-          }
-        });
-
-      function closeIdModal() {
-        document
-          .getElementById("id-display-modal")
-          .classList.remove("show", "visible");
-        handleHomeAction();
-      }
-      function logout() {
-        currentUser = null;
-        localStorage.removeItem("uniconnect_user");
-        updateNav();
-        navigate("home");
-      }
-
-      const supervisorSelect = document.getElementById("supervisor"),
-        slotContainer = document.getElementById("slot-container"),
-        hiddenSlotInput = document.getElementById("slot");
-      async function initBooking() {
-        if (supervisorSelect.options.length > 1) return;
-        try {
-          const data = await api("/supervisors");
-          supervisorSelect.innerHTML =
-            '<option value="" disabled selected>Select Supervisor</option>';
-          data.supervisors.forEach(
-            (sup) =>
-              (supervisorSelect.innerHTML += `<option value="${sup.name}">${sup.name}</option>`),
-          );
-        } catch (e) {
-          console.error(e);
-        }
-      }
-
-      supervisorSelect.addEventListener("change", async (e) => {
-        slotContainer.innerHTML = "";
-        hiddenSlotInput.value = "";
-        try {
-          const data = await api(
-            `/slots/${encodeURIComponent(e.target.value)}`,
-          );
-          if (data.availableSlots.length === 0) {
-            slotContainer.innerHTML = `<div style="grid-column: 1/-1; color: #dc2626; font-weight: 600; text-align: center;">No slots available</div>`;
-            return;
-          }
-          data.availableSlots.forEach((slot) => {
-            const pill = document.createElement("div");
-            pill.className = "slot-pill";
-            pill.textContent = slot;
-            pill.onclick = () => {
-              document
-                .querySelectorAll(".slot-pill")
-                .forEach((el) => el.classList.remove("selected"));
-              pill.classList.add("selected");
-              hiddenSlotInput.value = slot;
-            };
-            slotContainer.appendChild(pill);
-          });
-        } catch (e) {
-          console.error(e);
-        }
-      });
-
-      document
-        .getElementById("booking-form")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          if (!hiddenSlotInput.value) {
-            const mb = document.getElementById("msg-booking");
-            mb.textContent = "Please select a time slot.";
-            mb.className = "msg-box msg-error";
-            mb.classList.remove("hidden");
-            return;
-          }
-          try {
-            const res = await api("/book", {
-              method: "POST",
-              body: JSON.stringify({
-                student_id: currentUser.id,
-                supervisor: supervisorSelect.value,
-                slot: hiddenSlotInput.value,
-              }),
-            });
-            const mb = document.getElementById("msg-booking");
-            mb.textContent = res.message;
-            mb.className = "msg-box msg-success";
-            mb.classList.remove("hidden");
-            e.target.reset();
-            hiddenSlotInput.value = "";
-            slotContainer.innerHTML =
-              '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-weight: 500;">Please select a teacher first to view times.</div>';
-          } catch (err) {
-            const mb = document.getElementById("msg-booking");
-            mb.textContent = err.message;
-            mb.className = "msg-box msg-error";
-            mb.classList.remove("hidden");
-          }
-        });
-
-      let deleteId = null;
-      async function fetchAppointments(viewType) {
-        const container = document.getElementById(
-          viewType === "student"
-            ? "appointments-container"
-            : "teacher-appointments-container",
-        );
-        const empty = document.getElementById(
-          viewType === "student" ? "empty-student" : "empty-teacher",
-        );
-        container.innerHTML = "";
-        try {
-          const queryParam =
-            viewType === "student"
-              ? `?student_id=${currentUser.id}`
-              : `?teacher_name=${encodeURIComponent(currentUser.name)}`;
-          const data = await api(`/appointments${queryParam}`);
-          if (data.appointments.length === 0) empty.classList.remove("hidden");
-          else {
-            empty.classList.add("hidden");
-            data.appointments.forEach((app) => {
-              const card = document.createElement("div");
-              card.className = "appointment-card";
-
-              // Clean HTML rendering for the Cards replacing inline styles
-              card.innerHTML = `
-                            <div class="card-accent-bar"></div>
-                            <div class="card-content">
-                                <div class="card-top">
-                                    <span class="badge-slot">${app.slot}</span>
-                                    <span class="badge-id">Appt #${app.id}</span>
-                                </div>
-                                <h4>${viewType === "student" ? app.supervisor : app.student_name}</h4>
-                                <p>Student ID: ${app.student_id}</p>
-                            </div>
-                            <button onclick="openDeleteModal(${app.id})" class="btn-cancel">Cancel Session</button>
-                        `;
-              container.appendChild(card);
-            });
-          }
-        } catch (e) {
-          console.error(e);
-        }
-      }
-
-      const modalDelete = document.getElementById("modal-delete");
-      function openDeleteModal(id) {
-        deleteId = id;
-        modalDelete.classList.add("show");
-        setTimeout(() => modalDelete.classList.add("visible"), 10);
-      }
-      function closeDeleteModal() {
-        modalDelete.classList.remove("visible");
-        setTimeout(() => {
-          modalDelete.classList.remove("show");
-          deleteId = null;
-        }, 300);
-      }
-      document
-        .getElementById("confirm-delete-btn")
-        .addEventListener("click", async () => {
-          if (!deleteId) return;
-          try {
-            await api(`/appointments/${deleteId}`, { method: "DELETE" });
-            closeDeleteModal();
-            fetchAppointments(currentUser.role);
-          } catch (e) {
-            closeDeleteModal();
-          }
-        });
-
-      updateNav();
-      navigate("home");
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

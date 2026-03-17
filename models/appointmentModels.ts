@@ -49,6 +49,7 @@ export const getAppointments = (
     params.push(teacherName);
   }
   query += ` ORDER BY a.id DESC`;
+  console.log(params)
   return db.query(query, params).map((row) => ({
     id: row[0],
     student_id: row[1],
@@ -61,3 +62,4 @@ export const getAppointments = (
 export const deleteAppointmentById = (id: string) => {
   db.query("DELETE FROM appointments WHERE id = ?", [id]);
 };
+
