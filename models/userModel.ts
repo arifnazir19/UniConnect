@@ -1,4 +1,4 @@
-import db from "../tools/database.ts"
+import db from "../tools/database.ts";
 
 export const countRole = (role: "student" | "teacher"): number => {
   const table = role === "student" ? "students" : "supervisors";

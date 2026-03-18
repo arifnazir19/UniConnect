@@ -1,8 +1,7 @@
-import db,{setupDatabase}from"../tools/database.ts"
-console.log("setting up the tables")
-setupDatabase()
-console.log("adding the data into the tables")
-
+import db, { setupDatabase } from "../tools/database.ts";
+console.log("setting up the tables");
+setupDatabase();
+console.log("adding the data into the tables");
 
 // Insert Sample Data (if empty)
 const studentCount = db.query("SELECT COUNT(*) FROM students")[0][0];
@@ -10,7 +9,9 @@ if (studentCount === 0) {
   db.execute(
     "INSERT INTO students (id, name, password) VALUES ('S101','John','1234')",
   );
-  db.execute("INSERT INTO students (id, name, password) VALUES ('S102','Emily','1234')");
+  db.execute(
+    "INSERT INTO students (id, name, password) VALUES ('S102','Emily','1234')",
+  );
   db.execute(
     "INSERT INTO students (id, name, password) VALUES ('S103','Paul','1234')",
   );
@@ -46,4 +47,4 @@ if (slotCount === 0) {
   }
   console.log("Database initialized with sample slots.");
 }
-console.log("database successfully added")
+console.log("database successfully added");
