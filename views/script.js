@@ -10,9 +10,13 @@ function updateNav() {
   document
     .querySelectorAll(".auth-teacher")
     .forEach((el) => el.classList.add("hidden"));
-
+  const heroBtn = document.querySelector("#heroaction-btn");
+  const isTeacher =
+    currentUser.role === "teacher" ||
+    String(currentUser.id).toUpperCase().startsWith("T");
   if (!currentUser) {
     document.getElementById("nav-guest").classList.remove("hidden");
+    if (heroBtn) heroBtn.innerHTML = "Book Appointment Now →";
   } else {
     document.getElementById("nav-user").classList.remove("hidden");
     document.getElementById("nav-user-name").textContent = currentUser.name;
@@ -21,10 +25,13 @@ function updateNav() {
       document
         .querySelectorAll(".auth-student")
         .forEach((el) => el.classList.remove("hidden"));
+
+    if (heroBtn && !isTeacher) heroBtn.innerHTML = "Book Appointment Now →";
     else if (currentUser.role === "teacher")
       document
         .querySelectorAll(".auth-teacher")
         .forEach((el) => el.classList.remove("hidden"));
+    if (heroBtn && isTeacher) heroBtn.innerHTML = "View Booked Appointments →";
   }
 }
 

@@ -1,26 +1,19 @@
-import db from "../tools/database.ts";
+import db from "../tools/database.js";
 
 export const getAllSlots = () => {
-  return db.query("SELECT time FROM slots").map((row) => row[0] as string);
+  return db.query("SELECT time FROM slots").map((row) => row[0]);
 };
 
-export const getBookedSlotsForSupervisor = (
-  supervisorName: string,
-  date: string,
-) => {
+export const getBookedSlotsForSupervisor = (supervisorName, date) => {
   return db
     .query(`SELECT slot FROM appointments WHERE supervisor = ? AND date = ?`, [
       supervisorName,
       date,
     ])
-    .map((row) => row[0] as string);
+    .map((row) => row[0]);
 };
 
-export const checkExistingBooking = (
-  supervisor: string,
-  date: string,
-  slot: string,
-) => {
+export const checkExistingBooking = (supervisor, date, slot) => {
   return (
     db.query(
       "SELECT id FROM appointments WHERE supervisor = ? AND date = ? AND slot = ?",
@@ -29,27 +22,19 @@ export const checkExistingBooking = (
   );
 };
 
-export const createAppointment = (
-  studentId: string,
-  supervisor: string,
-  date: string,
-  slot: string,
-) => {
+export const createAppointment = (studentId, supervisor, date, slot) => {
   db.query(
     "INSERT INTO appointments (student_id, supervisor, date, slot) VALUES (?, ?, ?, ?)",
     [studentId, supervisor, date, slot],
   );
 };
 
-export const getAppointments = (
-  studentId: string | null,
-  teacherName: string | null,
-) => {
+export const getAppointments = (studentId, teacherName) => {
   let query = `
     SELECT a.id, a.student_id, s.name as student_name, a.supervisor, a.date, a.slot
     FROM appointments a JOIN students s ON a.student_id = s.id
   `;
-  const params: string[] = [];
+  const params = [];
 
   if (studentId) {
     query += ` WHERE a.student_id = ?`;
@@ -72,6 +57,6 @@ export const getAppointments = (
   }));
 };
 
-export const deleteAppointmentById = (id: string) => {
+export const deleteAppointmentById = (id) => {
   db.query("DELETE FROM appointments WHERE id = ?", [id]);
 };

@@ -1,5 +1,5 @@
-import { setupDatabase } from "./tools/database.ts";
-import { app } from "./server.ts";
+import { setupDatabase } from "./tools/database.js";
+import { app } from "./server.js";
 const port = 8000;
 //initialise the database tables
 setupDatabase();

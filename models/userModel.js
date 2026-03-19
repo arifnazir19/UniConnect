@@ -1,17 +1,12 @@
-import db from "../tools/database.ts";
+import db from "../tools/database.js";
 
-export const countRole = (role: "student" | "teacher"): number => {
+export const countRole = (role) => {
   const table = role === "student" ? "students" : "supervisors";
   const query = `SELECT COUNT(*) FROM ${table}`;
-  return db.query(query)[0][0] as number;
+  return db.query(query)[0][0];
 };
 
-export const createUser = (
-  id: string,
-  name: string,
-  password: string,
-  role: "student" | "teacher",
-) => {
+export const createUser = (id, name, password, role) => {
   const table = role === "student" ? "students" : "supervisors";
   db.query(`INSERT INTO ${table} (id, name, password) VALUES (?, ?, ?)`, [
     id,
@@ -20,7 +15,7 @@ export const createUser = (
   ]);
 };
 
-export const findUserById = (id: string, role: "student" | "teacher") => {
+export const findUserById = (id, role) => {
   const table = role === "student" ? "students" : "supervisors";
   const user = db.query(`SELECT name, password FROM ${table} WHERE id = ?`, [
     id,
@@ -28,15 +23,15 @@ export const findUserById = (id: string, role: "student" | "teacher") => {
   if (user.length === 0) return null;
   return {
     id,
-    name: user[0][0] as string,
-    password: user[0][1] as string,
+    name: user[0][0],
+    password: user[0][1],
     role,
   };
 };
 
 export const getAllSupervisors = () => {
   return db.query("SELECT id, name FROM supervisors").map((row) => ({
-    id: row[0] as string,
-    name: row[1] as string,
+    id: row[0],
+    name: row[1],
   }));
 };

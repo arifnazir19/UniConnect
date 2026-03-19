@@ -1,4 +1,4 @@
-import db, { setupDatabase } from "../tools/database.ts";
+import db, { setupDatabase } from "../tools/database.js";
 console.log("setting up the tables");
 setupDatabase();
 console.log("adding the data into the tables");

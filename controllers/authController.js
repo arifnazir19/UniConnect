@@ -1,6 +1,6 @@
-import * as UserModel from "../models/userModel.ts";
+import * as UserModel from "../models/userModel.js";
 
-export const register = async (ctx: any) => {
+export const register = async (ctx) => {
   const body = await ctx.request.body({ type: "json" }).value;
   const { name, password, role } = body;
   if (!name || !password || !role) {
@@ -15,7 +15,7 @@ export const register = async (ctx: any) => {
   ctx.response.body = { id: newId, name, role };
 };
 
-export const login = async (ctx: any) => {
+export const login = async (ctx) => {
   const body = await ctx.request.body({ type: "json" }).value;
   const { id, password } = body;
   if (!id || !password) {

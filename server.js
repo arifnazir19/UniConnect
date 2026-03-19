@@ -2,14 +2,14 @@ import { Application, Router } from "https://deno.land/x/oak@v12.1.0/mod.ts";
 import { oakCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
 
 // Using Explicit Named Imports to prevent 'undefined' errors
-import { register, login } from "./controllers/authController.ts";
+import { register, login } from "./controllers/authController.js";
 import {
   getSupervisors,
   getAvailableSlots,
   bookAppointment,
   getAppointmentsList,
   deleteAppointment,
-} from "./controllers/bookingController.ts";
+} from "./controllers/bookingController.js";
 
 export const app = new Application();
 const router = new Router();
@@ -20,7 +20,7 @@ const router = new Router();
 app.use(async (ctx, next) => {
   try {
     await next();
-  } catch (err: any) {
+  } catch (err) {
     console.error("🔥 FATAL SERVER ERROR:", err);
     ctx.response.status = 500;
     // Send the exact error message to the frontend HTML
